@@ -128,6 +128,26 @@ exports.Prisma.UserScalarFieldEnum = {
   createdAt: 'createdAt'
 };
 
+exports.Prisma.MovieScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  overview: 'overview',
+  releaseYear: 'releaseYear',
+  genres: 'genres',
+  runtime: 'runtime',
+  posterUrl: 'posterUrl',
+  createdAt: 'createdAt',
+  userId: 'userId'
+};
+
+exports.Prisma.WatchlistItemScalarFieldEnum = {
+  id: 'id',
+  status: 'status',
+  addedAt: 'addedAt',
+  userId: 'userId',
+  movieId: 'movieId'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -138,9 +158,21 @@ exports.Prisma.QueryMode = {
   insensitive: 'insensitive'
 };
 
+exports.Prisma.NullsOrder = {
+  first: 'first',
+  last: 'last'
+};
+exports.WatchlistStatus = exports.$Enums.WatchlistStatus = {
+  PLANNED: 'PLANNED',
+  WATCHING: 'WATCHING',
+  COMPLETED: 'COMPLETED',
+  DROPPED: 'DROPPED'
+};
 
 exports.Prisma.ModelName = {
-  User: 'User'
+  User: 'User',
+  Movie: 'Movie',
+  WatchlistItem: 'WatchlistItem'
 };
 
 /**

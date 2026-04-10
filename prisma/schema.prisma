@@ -1,10 +1,10 @@
 generator client {
   provider = "prisma-client-js"
-  output   = "./src/generated/prisma"
 }
 
 datasource db {
   provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
@@ -14,7 +14,7 @@ model User {
   password  String
   createdAt DateTime @default(now())
 
-  movies    Movie[]    @relation("MovieCreator")
+  movies    Movie[]         @relation("MovieCreator")
   watchlist WatchlistItem[]
 }
 
@@ -28,7 +28,6 @@ model Movie {
   posterUrl   String?
   createdAt   DateTime @default(now())
 
-  // Foreign key
   userId    String
   user      User   @relation("MovieCreator", fields: [userId], references: [id], onDelete: Cascade)
 
@@ -40,7 +39,6 @@ model WatchlistItem {
   status  WatchlistStatus @default(PLANNED)
   addedAt DateTime        @default(now())
 
-  // Foreign keys
   userId  String
   movieId String
 

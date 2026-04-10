@@ -18,6 +18,35 @@ export type PrismaPromise<T> = $Public.PrismaPromise<T>
  * 
  */
 export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Movie
+ * 
+ */
+export type Movie = $Result.DefaultSelection<Prisma.$MoviePayload>
+/**
+ * Model WatchlistItem
+ * 
+ */
+export type WatchlistItem = $Result.DefaultSelection<Prisma.$WatchlistItemPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const WatchlistStatus: {
+  PLANNED: 'PLANNED',
+  WATCHING: 'WATCHING',
+  COMPLETED: 'COMPLETED',
+  DROPPED: 'DROPPED'
+};
+
+export type WatchlistStatus = (typeof WatchlistStatus)[keyof typeof WatchlistStatus]
+
+}
+
+export type WatchlistStatus = $Enums.WatchlistStatus
+
+export const WatchlistStatus: typeof $Enums.WatchlistStatus
 
 /**
  * ##  Prisma Client ʲˢ
@@ -149,6 +178,26 @@ export class PrismaClient<
     * ```
     */
   get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.movie`: Exposes CRUD operations for the **Movie** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Movies
+    * const movies = await prisma.movie.findMany()
+    * ```
+    */
+  get movie(): Prisma.MovieDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.watchlistItem`: Exposes CRUD operations for the **WatchlistItem** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more WatchlistItems
+    * const watchlistItems = await prisma.watchlistItem.findMany()
+    * ```
+    */
+  get watchlistItem(): Prisma.WatchlistItemDelegate<ExtArgs, ClientOptions>;
 }
 
 export namespace Prisma {
@@ -583,7 +632,9 @@ export namespace Prisma {
 
 
   export const ModelName: {
-    User: 'User'
+    User: 'User',
+    Movie: 'Movie',
+    WatchlistItem: 'WatchlistItem'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -599,7 +650,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user"
+      modelProps: "user" | "movie" | "watchlistItem"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -674,6 +725,154 @@ export namespace Prisma {
           count: {
             args: Prisma.UserCountArgs<ExtArgs>
             result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Movie: {
+        payload: Prisma.$MoviePayload<ExtArgs>
+        fields: Prisma.MovieFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.MovieFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.MovieFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>
+          }
+          findFirst: {
+            args: Prisma.MovieFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.MovieFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>
+          }
+          findMany: {
+            args: Prisma.MovieFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>[]
+          }
+          create: {
+            args: Prisma.MovieCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>
+          }
+          createMany: {
+            args: Prisma.MovieCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.MovieCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>[]
+          }
+          delete: {
+            args: Prisma.MovieDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>
+          }
+          update: {
+            args: Prisma.MovieUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>
+          }
+          deleteMany: {
+            args: Prisma.MovieDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.MovieUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.MovieUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>[]
+          }
+          upsert: {
+            args: Prisma.MovieUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$MoviePayload>
+          }
+          aggregate: {
+            args: Prisma.MovieAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateMovie>
+          }
+          groupBy: {
+            args: Prisma.MovieGroupByArgs<ExtArgs>
+            result: $Utils.Optional<MovieGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.MovieCountArgs<ExtArgs>
+            result: $Utils.Optional<MovieCountAggregateOutputType> | number
+          }
+        }
+      }
+      WatchlistItem: {
+        payload: Prisma.$WatchlistItemPayload<ExtArgs>
+        fields: Prisma.WatchlistItemFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.WatchlistItemFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.WatchlistItemFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>
+          }
+          findFirst: {
+            args: Prisma.WatchlistItemFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.WatchlistItemFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>
+          }
+          findMany: {
+            args: Prisma.WatchlistItemFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>[]
+          }
+          create: {
+            args: Prisma.WatchlistItemCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>
+          }
+          createMany: {
+            args: Prisma.WatchlistItemCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          createManyAndReturn: {
+            args: Prisma.WatchlistItemCreateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>[]
+          }
+          delete: {
+            args: Prisma.WatchlistItemDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>
+          }
+          update: {
+            args: Prisma.WatchlistItemUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>
+          }
+          deleteMany: {
+            args: Prisma.WatchlistItemDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.WatchlistItemUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateManyAndReturn: {
+            args: Prisma.WatchlistItemUpdateManyAndReturnArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>[]
+          }
+          upsert: {
+            args: Prisma.WatchlistItemUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$WatchlistItemPayload>
+          }
+          aggregate: {
+            args: Prisma.WatchlistItemAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateWatchlistItem>
+          }
+          groupBy: {
+            args: Prisma.WatchlistItemGroupByArgs<ExtArgs>
+            result: $Utils.Optional<WatchlistItemGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.WatchlistItemCountArgs<ExtArgs>
+            result: $Utils.Optional<WatchlistItemCountAggregateOutputType> | number
           }
         }
       }
@@ -786,6 +985,8 @@ export namespace Prisma {
   }
   export type GlobalOmitConfig = {
     user?: UserOmit
+    movie?: MovieOmit
+    watchlistItem?: WatchlistItemOmit
   }
 
   /* Types for Logging */
@@ -860,6 +1061,76 @@ export namespace Prisma {
    * Count Types
    */
 
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    movies: number
+    watchlist: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    movies?: boolean | UserCountOutputTypeCountMoviesArgs
+    watchlist?: boolean | UserCountOutputTypeCountWatchlistArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountMoviesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MovieWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountWatchlistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WatchlistItemWhereInput
+  }
+
+
+  /**
+   * Count Type MovieCountOutputType
+   */
+
+  export type MovieCountOutputType = {
+    watchlist: number
+  }
+
+  export type MovieCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    watchlist?: boolean | MovieCountOutputTypeCountWatchlistArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * MovieCountOutputType without action
+   */
+  export type MovieCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the MovieCountOutputType
+     */
+    select?: MovieCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * MovieCountOutputType without action
+   */
+  export type MovieCountOutputTypeCountWatchlistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WatchlistItemWhereInput
+  }
 
 
   /**
@@ -1030,6 +1301,9 @@ export namespace Prisma {
     email?: boolean
     password?: boolean
     createdAt?: boolean
+    movies?: boolean | User$moviesArgs<ExtArgs>
+    watchlist?: boolean | User$watchlistArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
   export type UserSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
@@ -1057,10 +1331,20 @@ export namespace Prisma {
   }
 
   export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "email" | "password" | "createdAt", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    movies?: boolean | User$moviesArgs<ExtArgs>
+    watchlist?: boolean | User$watchlistArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type UserIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
+  export type UserIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {}
 
   export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "User"
-    objects: {}
+    objects: {
+      movies: Prisma.$MoviePayload<ExtArgs>[]
+      watchlist: Prisma.$WatchlistItemPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       name: string
@@ -1461,6 +1745,8 @@ export namespace Prisma {
    */
   export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
+    movies<T extends User$moviesArgs<ExtArgs> = {}>(args?: Subset<T, User$moviesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    watchlist<T extends User$watchlistArgs<ExtArgs> = {}>(args?: Subset<T, User$watchlistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -1512,6 +1798,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1530,6 +1820,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where: UserWhereUniqueInput
@@ -1547,6 +1841,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which User to fetch.
      */
@@ -1596,6 +1894,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter, which User to fetch.
      */
     where?: UserWhereInput
@@ -1643,6 +1945,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * Filter, which Users to fetch.
      */
@@ -1692,6 +1998,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The data needed to create a User.
      */
     data: XOR<UserCreateInput, UserUncheckedCreateInput>
@@ -1739,6 +2049,10 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
     /**
      * The data needed to update a User.
      */
@@ -1806,6 +2120,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * The filter to search for the User to update in case it exists.
      */
     where: UserWhereUniqueInput
@@ -1832,6 +2150,10 @@ export namespace Prisma {
      */
     omit?: UserOmit<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
      * Filter which User to delete.
      */
     where: UserWhereUniqueInput
@@ -1852,6 +2174,54 @@ export namespace Prisma {
   }
 
   /**
+   * User.movies
+   */
+  export type User$moviesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    where?: MovieWhereInput
+    orderBy?: MovieOrderByWithRelationInput | MovieOrderByWithRelationInput[]
+    cursor?: MovieWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: MovieScalarFieldEnum | MovieScalarFieldEnum[]
+  }
+
+  /**
+   * User.watchlist
+   */
+  export type User$watchlistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    where?: WatchlistItemWhereInput
+    orderBy?: WatchlistItemOrderByWithRelationInput | WatchlistItemOrderByWithRelationInput[]
+    cursor?: WatchlistItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WatchlistItemScalarFieldEnum | WatchlistItemScalarFieldEnum[]
+  }
+
+  /**
    * User without action
    */
   export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -1863,6 +2233,2260 @@ export namespace Prisma {
      * Omit specific fields from the User
      */
     omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Movie
+   */
+
+  export type AggregateMovie = {
+    _count: MovieCountAggregateOutputType | null
+    _avg: MovieAvgAggregateOutputType | null
+    _sum: MovieSumAggregateOutputType | null
+    _min: MovieMinAggregateOutputType | null
+    _max: MovieMaxAggregateOutputType | null
+  }
+
+  export type MovieAvgAggregateOutputType = {
+    releaseYear: number | null
+    runtime: number | null
+  }
+
+  export type MovieSumAggregateOutputType = {
+    releaseYear: number | null
+    runtime: number | null
+  }
+
+  export type MovieMinAggregateOutputType = {
+    id: string | null
+    title: string | null
+    overview: string | null
+    releaseYear: number | null
+    runtime: number | null
+    posterUrl: string | null
+    createdAt: Date | null
+    userId: string | null
+  }
+
+  export type MovieMaxAggregateOutputType = {
+    id: string | null
+    title: string | null
+    overview: string | null
+    releaseYear: number | null
+    runtime: number | null
+    posterUrl: string | null
+    createdAt: Date | null
+    userId: string | null
+  }
+
+  export type MovieCountAggregateOutputType = {
+    id: number
+    title: number
+    overview: number
+    releaseYear: number
+    genres: number
+    runtime: number
+    posterUrl: number
+    createdAt: number
+    userId: number
+    _all: number
+  }
+
+
+  export type MovieAvgAggregateInputType = {
+    releaseYear?: true
+    runtime?: true
+  }
+
+  export type MovieSumAggregateInputType = {
+    releaseYear?: true
+    runtime?: true
+  }
+
+  export type MovieMinAggregateInputType = {
+    id?: true
+    title?: true
+    overview?: true
+    releaseYear?: true
+    runtime?: true
+    posterUrl?: true
+    createdAt?: true
+    userId?: true
+  }
+
+  export type MovieMaxAggregateInputType = {
+    id?: true
+    title?: true
+    overview?: true
+    releaseYear?: true
+    runtime?: true
+    posterUrl?: true
+    createdAt?: true
+    userId?: true
+  }
+
+  export type MovieCountAggregateInputType = {
+    id?: true
+    title?: true
+    overview?: true
+    releaseYear?: true
+    genres?: true
+    runtime?: true
+    posterUrl?: true
+    createdAt?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type MovieAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Movie to aggregate.
+     */
+    where?: MovieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Movies to fetch.
+     */
+    orderBy?: MovieOrderByWithRelationInput | MovieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: MovieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Movies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Movies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Movies
+    **/
+    _count?: true | MovieCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: MovieAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: MovieSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: MovieMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: MovieMaxAggregateInputType
+  }
+
+  export type GetMovieAggregateType<T extends MovieAggregateArgs> = {
+        [P in keyof T & keyof AggregateMovie]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateMovie[P]>
+      : GetScalarType<T[P], AggregateMovie[P]>
+  }
+
+
+
+
+  export type MovieGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: MovieWhereInput
+    orderBy?: MovieOrderByWithAggregationInput | MovieOrderByWithAggregationInput[]
+    by: MovieScalarFieldEnum[] | MovieScalarFieldEnum
+    having?: MovieScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: MovieCountAggregateInputType | true
+    _avg?: MovieAvgAggregateInputType
+    _sum?: MovieSumAggregateInputType
+    _min?: MovieMinAggregateInputType
+    _max?: MovieMaxAggregateInputType
+  }
+
+  export type MovieGroupByOutputType = {
+    id: string
+    title: string
+    overview: string | null
+    releaseYear: number
+    genres: string[]
+    runtime: number | null
+    posterUrl: string | null
+    createdAt: Date
+    userId: string
+    _count: MovieCountAggregateOutputType | null
+    _avg: MovieAvgAggregateOutputType | null
+    _sum: MovieSumAggregateOutputType | null
+    _min: MovieMinAggregateOutputType | null
+    _max: MovieMaxAggregateOutputType | null
+  }
+
+  type GetMovieGroupByPayload<T extends MovieGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<MovieGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof MovieGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], MovieGroupByOutputType[P]>
+            : GetScalarType<T[P], MovieGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type MovieSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    overview?: boolean
+    releaseYear?: boolean
+    genres?: boolean
+    runtime?: boolean
+    posterUrl?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    watchlist?: boolean | Movie$watchlistArgs<ExtArgs>
+    _count?: boolean | MovieCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["movie"]>
+
+  export type MovieSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    overview?: boolean
+    releaseYear?: boolean
+    genres?: boolean
+    runtime?: boolean
+    posterUrl?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["movie"]>
+
+  export type MovieSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    overview?: boolean
+    releaseYear?: boolean
+    genres?: boolean
+    runtime?: boolean
+    posterUrl?: boolean
+    createdAt?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["movie"]>
+
+  export type MovieSelectScalar = {
+    id?: boolean
+    title?: boolean
+    overview?: boolean
+    releaseYear?: boolean
+    genres?: boolean
+    runtime?: boolean
+    posterUrl?: boolean
+    createdAt?: boolean
+    userId?: boolean
+  }
+
+  export type MovieOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "overview" | "releaseYear" | "genres" | "runtime" | "posterUrl" | "createdAt" | "userId", ExtArgs["result"]["movie"]>
+  export type MovieInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    watchlist?: boolean | Movie$watchlistArgs<ExtArgs>
+    _count?: boolean | MovieCountOutputTypeDefaultArgs<ExtArgs>
+  }
+  export type MovieIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+  export type MovieIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $MoviePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Movie"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      watchlist: Prisma.$WatchlistItemPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      title: string
+      overview: string | null
+      releaseYear: number
+      genres: string[]
+      runtime: number | null
+      posterUrl: string | null
+      createdAt: Date
+      userId: string
+    }, ExtArgs["result"]["movie"]>
+    composites: {}
+  }
+
+  type MovieGetPayload<S extends boolean | null | undefined | MovieDefaultArgs> = $Result.GetResult<Prisma.$MoviePayload, S>
+
+  type MovieCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<MovieFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: MovieCountAggregateInputType | true
+    }
+
+  export interface MovieDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Movie'], meta: { name: 'Movie' } }
+    /**
+     * Find zero or one Movie that matches the filter.
+     * @param {MovieFindUniqueArgs} args - Arguments to find a Movie
+     * @example
+     * // Get one Movie
+     * const movie = await prisma.movie.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends MovieFindUniqueArgs>(args: SelectSubset<T, MovieFindUniqueArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Movie that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {MovieFindUniqueOrThrowArgs} args - Arguments to find a Movie
+     * @example
+     * // Get one Movie
+     * const movie = await prisma.movie.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends MovieFindUniqueOrThrowArgs>(args: SelectSubset<T, MovieFindUniqueOrThrowArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Movie that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MovieFindFirstArgs} args - Arguments to find a Movie
+     * @example
+     * // Get one Movie
+     * const movie = await prisma.movie.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends MovieFindFirstArgs>(args?: SelectSubset<T, MovieFindFirstArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Movie that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MovieFindFirstOrThrowArgs} args - Arguments to find a Movie
+     * @example
+     * // Get one Movie
+     * const movie = await prisma.movie.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends MovieFindFirstOrThrowArgs>(args?: SelectSubset<T, MovieFindFirstOrThrowArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Movies that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MovieFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Movies
+     * const movies = await prisma.movie.findMany()
+     * 
+     * // Get first 10 Movies
+     * const movies = await prisma.movie.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const movieWithIdOnly = await prisma.movie.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends MovieFindManyArgs>(args?: SelectSubset<T, MovieFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Movie.
+     * @param {MovieCreateArgs} args - Arguments to create a Movie.
+     * @example
+     * // Create one Movie
+     * const Movie = await prisma.movie.create({
+     *   data: {
+     *     // ... data to create a Movie
+     *   }
+     * })
+     * 
+     */
+    create<T extends MovieCreateArgs>(args: SelectSubset<T, MovieCreateArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Movies.
+     * @param {MovieCreateManyArgs} args - Arguments to create many Movies.
+     * @example
+     * // Create many Movies
+     * const movie = await prisma.movie.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends MovieCreateManyArgs>(args?: SelectSubset<T, MovieCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many Movies and returns the data saved in the database.
+     * @param {MovieCreateManyAndReturnArgs} args - Arguments to create many Movies.
+     * @example
+     * // Create many Movies
+     * const movie = await prisma.movie.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many Movies and only return the `id`
+     * const movieWithIdOnly = await prisma.movie.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends MovieCreateManyAndReturnArgs>(args?: SelectSubset<T, MovieCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a Movie.
+     * @param {MovieDeleteArgs} args - Arguments to delete one Movie.
+     * @example
+     * // Delete one Movie
+     * const Movie = await prisma.movie.delete({
+     *   where: {
+     *     // ... filter to delete one Movie
+     *   }
+     * })
+     * 
+     */
+    delete<T extends MovieDeleteArgs>(args: SelectSubset<T, MovieDeleteArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Movie.
+     * @param {MovieUpdateArgs} args - Arguments to update one Movie.
+     * @example
+     * // Update one Movie
+     * const movie = await prisma.movie.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends MovieUpdateArgs>(args: SelectSubset<T, MovieUpdateArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Movies.
+     * @param {MovieDeleteManyArgs} args - Arguments to filter Movies to delete.
+     * @example
+     * // Delete a few Movies
+     * const { count } = await prisma.movie.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends MovieDeleteManyArgs>(args?: SelectSubset<T, MovieDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Movies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MovieUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Movies
+     * const movie = await prisma.movie.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends MovieUpdateManyArgs>(args: SelectSubset<T, MovieUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Movies and returns the data updated in the database.
+     * @param {MovieUpdateManyAndReturnArgs} args - Arguments to update many Movies.
+     * @example
+     * // Update many Movies
+     * const movie = await prisma.movie.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more Movies and only return the `id`
+     * const movieWithIdOnly = await prisma.movie.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends MovieUpdateManyAndReturnArgs>(args: SelectSubset<T, MovieUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one Movie.
+     * @param {MovieUpsertArgs} args - Arguments to update or create a Movie.
+     * @example
+     * // Update or create a Movie
+     * const movie = await prisma.movie.upsert({
+     *   create: {
+     *     // ... data to create a Movie
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Movie we want to update
+     *   }
+     * })
+     */
+    upsert<T extends MovieUpsertArgs>(args: SelectSubset<T, MovieUpsertArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Movies.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MovieCountArgs} args - Arguments to filter Movies to count.
+     * @example
+     * // Count the number of Movies
+     * const count = await prisma.movie.count({
+     *   where: {
+     *     // ... the filter for the Movies we want to count
+     *   }
+     * })
+    **/
+    count<T extends MovieCountArgs>(
+      args?: Subset<T, MovieCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], MovieCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Movie.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MovieAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends MovieAggregateArgs>(args: Subset<T, MovieAggregateArgs>): Prisma.PrismaPromise<GetMovieAggregateType<T>>
+
+    /**
+     * Group by Movie.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {MovieGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends MovieGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: MovieGroupByArgs['orderBy'] }
+        : { orderBy?: MovieGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, MovieGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetMovieGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Movie model
+   */
+  readonly fields: MovieFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Movie.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__MovieClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    watchlist<T extends Movie$watchlistArgs<ExtArgs> = {}>(args?: Subset<T, Movie$watchlistArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Movie model
+   */
+  interface MovieFieldRefs {
+    readonly id: FieldRef<"Movie", 'String'>
+    readonly title: FieldRef<"Movie", 'String'>
+    readonly overview: FieldRef<"Movie", 'String'>
+    readonly releaseYear: FieldRef<"Movie", 'Int'>
+    readonly genres: FieldRef<"Movie", 'String[]'>
+    readonly runtime: FieldRef<"Movie", 'Int'>
+    readonly posterUrl: FieldRef<"Movie", 'String'>
+    readonly createdAt: FieldRef<"Movie", 'DateTime'>
+    readonly userId: FieldRef<"Movie", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Movie findUnique
+   */
+  export type MovieFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * Filter, which Movie to fetch.
+     */
+    where: MovieWhereUniqueInput
+  }
+
+  /**
+   * Movie findUniqueOrThrow
+   */
+  export type MovieFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * Filter, which Movie to fetch.
+     */
+    where: MovieWhereUniqueInput
+  }
+
+  /**
+   * Movie findFirst
+   */
+  export type MovieFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * Filter, which Movie to fetch.
+     */
+    where?: MovieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Movies to fetch.
+     */
+    orderBy?: MovieOrderByWithRelationInput | MovieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Movies.
+     */
+    cursor?: MovieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Movies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Movies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Movies.
+     */
+    distinct?: MovieScalarFieldEnum | MovieScalarFieldEnum[]
+  }
+
+  /**
+   * Movie findFirstOrThrow
+   */
+  export type MovieFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * Filter, which Movie to fetch.
+     */
+    where?: MovieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Movies to fetch.
+     */
+    orderBy?: MovieOrderByWithRelationInput | MovieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Movies.
+     */
+    cursor?: MovieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Movies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Movies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Movies.
+     */
+    distinct?: MovieScalarFieldEnum | MovieScalarFieldEnum[]
+  }
+
+  /**
+   * Movie findMany
+   */
+  export type MovieFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * Filter, which Movies to fetch.
+     */
+    where?: MovieWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Movies to fetch.
+     */
+    orderBy?: MovieOrderByWithRelationInput | MovieOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Movies.
+     */
+    cursor?: MovieWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Movies from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Movies.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Movies.
+     */
+    distinct?: MovieScalarFieldEnum | MovieScalarFieldEnum[]
+  }
+
+  /**
+   * Movie create
+   */
+  export type MovieCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Movie.
+     */
+    data: XOR<MovieCreateInput, MovieUncheckedCreateInput>
+  }
+
+  /**
+   * Movie createMany
+   */
+  export type MovieCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Movies.
+     */
+    data: MovieCreateManyInput | MovieCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Movie createManyAndReturn
+   */
+  export type MovieCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * The data used to create many Movies.
+     */
+    data: MovieCreateManyInput | MovieCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Movie update
+   */
+  export type MovieUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Movie.
+     */
+    data: XOR<MovieUpdateInput, MovieUncheckedUpdateInput>
+    /**
+     * Choose, which Movie to update.
+     */
+    where: MovieWhereUniqueInput
+  }
+
+  /**
+   * Movie updateMany
+   */
+  export type MovieUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Movies.
+     */
+    data: XOR<MovieUpdateManyMutationInput, MovieUncheckedUpdateManyInput>
+    /**
+     * Filter which Movies to update
+     */
+    where?: MovieWhereInput
+    /**
+     * Limit how many Movies to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Movie updateManyAndReturn
+   */
+  export type MovieUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * The data used to update Movies.
+     */
+    data: XOR<MovieUpdateManyMutationInput, MovieUncheckedUpdateManyInput>
+    /**
+     * Filter which Movies to update
+     */
+    where?: MovieWhereInput
+    /**
+     * Limit how many Movies to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * Movie upsert
+   */
+  export type MovieUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Movie to update in case it exists.
+     */
+    where: MovieWhereUniqueInput
+    /**
+     * In case the Movie found by the `where` argument doesn't exist, create a new Movie with this data.
+     */
+    create: XOR<MovieCreateInput, MovieUncheckedCreateInput>
+    /**
+     * In case the Movie was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<MovieUpdateInput, MovieUncheckedUpdateInput>
+  }
+
+  /**
+   * Movie delete
+   */
+  export type MovieDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+    /**
+     * Filter which Movie to delete.
+     */
+    where: MovieWhereUniqueInput
+  }
+
+  /**
+   * Movie deleteMany
+   */
+  export type MovieDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Movies to delete
+     */
+    where?: MovieWhereInput
+    /**
+     * Limit how many Movies to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Movie.watchlist
+   */
+  export type Movie$watchlistArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    where?: WatchlistItemWhereInput
+    orderBy?: WatchlistItemOrderByWithRelationInput | WatchlistItemOrderByWithRelationInput[]
+    cursor?: WatchlistItemWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WatchlistItemScalarFieldEnum | WatchlistItemScalarFieldEnum[]
+  }
+
+  /**
+   * Movie without action
+   */
+  export type MovieDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Movie
+     */
+    select?: MovieSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Movie
+     */
+    omit?: MovieOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: MovieInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model WatchlistItem
+   */
+
+  export type AggregateWatchlistItem = {
+    _count: WatchlistItemCountAggregateOutputType | null
+    _min: WatchlistItemMinAggregateOutputType | null
+    _max: WatchlistItemMaxAggregateOutputType | null
+  }
+
+  export type WatchlistItemMinAggregateOutputType = {
+    id: string | null
+    status: $Enums.WatchlistStatus | null
+    addedAt: Date | null
+    userId: string | null
+    movieId: string | null
+  }
+
+  export type WatchlistItemMaxAggregateOutputType = {
+    id: string | null
+    status: $Enums.WatchlistStatus | null
+    addedAt: Date | null
+    userId: string | null
+    movieId: string | null
+  }
+
+  export type WatchlistItemCountAggregateOutputType = {
+    id: number
+    status: number
+    addedAt: number
+    userId: number
+    movieId: number
+    _all: number
+  }
+
+
+  export type WatchlistItemMinAggregateInputType = {
+    id?: true
+    status?: true
+    addedAt?: true
+    userId?: true
+    movieId?: true
+  }
+
+  export type WatchlistItemMaxAggregateInputType = {
+    id?: true
+    status?: true
+    addedAt?: true
+    userId?: true
+    movieId?: true
+  }
+
+  export type WatchlistItemCountAggregateInputType = {
+    id?: true
+    status?: true
+    addedAt?: true
+    userId?: true
+    movieId?: true
+    _all?: true
+  }
+
+  export type WatchlistItemAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WatchlistItem to aggregate.
+     */
+    where?: WatchlistItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WatchlistItems to fetch.
+     */
+    orderBy?: WatchlistItemOrderByWithRelationInput | WatchlistItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: WatchlistItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WatchlistItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WatchlistItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned WatchlistItems
+    **/
+    _count?: true | WatchlistItemCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: WatchlistItemMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: WatchlistItemMaxAggregateInputType
+  }
+
+  export type GetWatchlistItemAggregateType<T extends WatchlistItemAggregateArgs> = {
+        [P in keyof T & keyof AggregateWatchlistItem]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateWatchlistItem[P]>
+      : GetScalarType<T[P], AggregateWatchlistItem[P]>
+  }
+
+
+
+
+  export type WatchlistItemGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WatchlistItemWhereInput
+    orderBy?: WatchlistItemOrderByWithAggregationInput | WatchlistItemOrderByWithAggregationInput[]
+    by: WatchlistItemScalarFieldEnum[] | WatchlistItemScalarFieldEnum
+    having?: WatchlistItemScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: WatchlistItemCountAggregateInputType | true
+    _min?: WatchlistItemMinAggregateInputType
+    _max?: WatchlistItemMaxAggregateInputType
+  }
+
+  export type WatchlistItemGroupByOutputType = {
+    id: string
+    status: $Enums.WatchlistStatus
+    addedAt: Date
+    userId: string
+    movieId: string
+    _count: WatchlistItemCountAggregateOutputType | null
+    _min: WatchlistItemMinAggregateOutputType | null
+    _max: WatchlistItemMaxAggregateOutputType | null
+  }
+
+  type GetWatchlistItemGroupByPayload<T extends WatchlistItemGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<WatchlistItemGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof WatchlistItemGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], WatchlistItemGroupByOutputType[P]>
+            : GetScalarType<T[P], WatchlistItemGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type WatchlistItemSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    status?: boolean
+    addedAt?: boolean
+    userId?: boolean
+    movieId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    movie?: boolean | MovieDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["watchlistItem"]>
+
+  export type WatchlistItemSelectCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    status?: boolean
+    addedAt?: boolean
+    userId?: boolean
+    movieId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    movie?: boolean | MovieDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["watchlistItem"]>
+
+  export type WatchlistItemSelectUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    status?: boolean
+    addedAt?: boolean
+    userId?: boolean
+    movieId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    movie?: boolean | MovieDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["watchlistItem"]>
+
+  export type WatchlistItemSelectScalar = {
+    id?: boolean
+    status?: boolean
+    addedAt?: boolean
+    userId?: boolean
+    movieId?: boolean
+  }
+
+  export type WatchlistItemOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "status" | "addedAt" | "userId" | "movieId", ExtArgs["result"]["watchlistItem"]>
+  export type WatchlistItemInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    movie?: boolean | MovieDefaultArgs<ExtArgs>
+  }
+  export type WatchlistItemIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    movie?: boolean | MovieDefaultArgs<ExtArgs>
+  }
+  export type WatchlistItemIncludeUpdateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    movie?: boolean | MovieDefaultArgs<ExtArgs>
+  }
+
+  export type $WatchlistItemPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "WatchlistItem"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      movie: Prisma.$MoviePayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: string
+      status: $Enums.WatchlistStatus
+      addedAt: Date
+      userId: string
+      movieId: string
+    }, ExtArgs["result"]["watchlistItem"]>
+    composites: {}
+  }
+
+  type WatchlistItemGetPayload<S extends boolean | null | undefined | WatchlistItemDefaultArgs> = $Result.GetResult<Prisma.$WatchlistItemPayload, S>
+
+  type WatchlistItemCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<WatchlistItemFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: WatchlistItemCountAggregateInputType | true
+    }
+
+  export interface WatchlistItemDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['WatchlistItem'], meta: { name: 'WatchlistItem' } }
+    /**
+     * Find zero or one WatchlistItem that matches the filter.
+     * @param {WatchlistItemFindUniqueArgs} args - Arguments to find a WatchlistItem
+     * @example
+     * // Get one WatchlistItem
+     * const watchlistItem = await prisma.watchlistItem.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends WatchlistItemFindUniqueArgs>(args: SelectSubset<T, WatchlistItemFindUniqueArgs<ExtArgs>>): Prisma__WatchlistItemClient<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one WatchlistItem that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {WatchlistItemFindUniqueOrThrowArgs} args - Arguments to find a WatchlistItem
+     * @example
+     * // Get one WatchlistItem
+     * const watchlistItem = await prisma.watchlistItem.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends WatchlistItemFindUniqueOrThrowArgs>(args: SelectSubset<T, WatchlistItemFindUniqueOrThrowArgs<ExtArgs>>): Prisma__WatchlistItemClient<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WatchlistItem that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WatchlistItemFindFirstArgs} args - Arguments to find a WatchlistItem
+     * @example
+     * // Get one WatchlistItem
+     * const watchlistItem = await prisma.watchlistItem.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends WatchlistItemFindFirstArgs>(args?: SelectSubset<T, WatchlistItemFindFirstArgs<ExtArgs>>): Prisma__WatchlistItemClient<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first WatchlistItem that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WatchlistItemFindFirstOrThrowArgs} args - Arguments to find a WatchlistItem
+     * @example
+     * // Get one WatchlistItem
+     * const watchlistItem = await prisma.watchlistItem.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends WatchlistItemFindFirstOrThrowArgs>(args?: SelectSubset<T, WatchlistItemFindFirstOrThrowArgs<ExtArgs>>): Prisma__WatchlistItemClient<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more WatchlistItems that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WatchlistItemFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all WatchlistItems
+     * const watchlistItems = await prisma.watchlistItem.findMany()
+     * 
+     * // Get first 10 WatchlistItems
+     * const watchlistItems = await prisma.watchlistItem.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const watchlistItemWithIdOnly = await prisma.watchlistItem.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends WatchlistItemFindManyArgs>(args?: SelectSubset<T, WatchlistItemFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a WatchlistItem.
+     * @param {WatchlistItemCreateArgs} args - Arguments to create a WatchlistItem.
+     * @example
+     * // Create one WatchlistItem
+     * const WatchlistItem = await prisma.watchlistItem.create({
+     *   data: {
+     *     // ... data to create a WatchlistItem
+     *   }
+     * })
+     * 
+     */
+    create<T extends WatchlistItemCreateArgs>(args: SelectSubset<T, WatchlistItemCreateArgs<ExtArgs>>): Prisma__WatchlistItemClient<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many WatchlistItems.
+     * @param {WatchlistItemCreateManyArgs} args - Arguments to create many WatchlistItems.
+     * @example
+     * // Create many WatchlistItems
+     * const watchlistItem = await prisma.watchlistItem.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends WatchlistItemCreateManyArgs>(args?: SelectSubset<T, WatchlistItemCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create many WatchlistItems and returns the data saved in the database.
+     * @param {WatchlistItemCreateManyAndReturnArgs} args - Arguments to create many WatchlistItems.
+     * @example
+     * // Create many WatchlistItems
+     * const watchlistItem = await prisma.watchlistItem.createManyAndReturn({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Create many WatchlistItems and only return the `id`
+     * const watchlistItemWithIdOnly = await prisma.watchlistItem.createManyAndReturn({
+     *   select: { id: true },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    createManyAndReturn<T extends WatchlistItemCreateManyAndReturnArgs>(args?: SelectSubset<T, WatchlistItemCreateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "createManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Delete a WatchlistItem.
+     * @param {WatchlistItemDeleteArgs} args - Arguments to delete one WatchlistItem.
+     * @example
+     * // Delete one WatchlistItem
+     * const WatchlistItem = await prisma.watchlistItem.delete({
+     *   where: {
+     *     // ... filter to delete one WatchlistItem
+     *   }
+     * })
+     * 
+     */
+    delete<T extends WatchlistItemDeleteArgs>(args: SelectSubset<T, WatchlistItemDeleteArgs<ExtArgs>>): Prisma__WatchlistItemClient<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one WatchlistItem.
+     * @param {WatchlistItemUpdateArgs} args - Arguments to update one WatchlistItem.
+     * @example
+     * // Update one WatchlistItem
+     * const watchlistItem = await prisma.watchlistItem.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends WatchlistItemUpdateArgs>(args: SelectSubset<T, WatchlistItemUpdateArgs<ExtArgs>>): Prisma__WatchlistItemClient<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more WatchlistItems.
+     * @param {WatchlistItemDeleteManyArgs} args - Arguments to filter WatchlistItems to delete.
+     * @example
+     * // Delete a few WatchlistItems
+     * const { count } = await prisma.watchlistItem.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends WatchlistItemDeleteManyArgs>(args?: SelectSubset<T, WatchlistItemDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WatchlistItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WatchlistItemUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many WatchlistItems
+     * const watchlistItem = await prisma.watchlistItem.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends WatchlistItemUpdateManyArgs>(args: SelectSubset<T, WatchlistItemUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more WatchlistItems and returns the data updated in the database.
+     * @param {WatchlistItemUpdateManyAndReturnArgs} args - Arguments to update many WatchlistItems.
+     * @example
+     * // Update many WatchlistItems
+     * const watchlistItem = await prisma.watchlistItem.updateManyAndReturn({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * 
+     * // Update zero or more WatchlistItems and only return the `id`
+     * const watchlistItemWithIdOnly = await prisma.watchlistItem.updateManyAndReturn({
+     *   select: { id: true },
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * 
+     */
+    updateManyAndReturn<T extends WatchlistItemUpdateManyAndReturnArgs>(args: SelectSubset<T, WatchlistItemUpdateManyAndReturnArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "updateManyAndReturn", GlobalOmitOptions>>
+
+    /**
+     * Create or update one WatchlistItem.
+     * @param {WatchlistItemUpsertArgs} args - Arguments to update or create a WatchlistItem.
+     * @example
+     * // Update or create a WatchlistItem
+     * const watchlistItem = await prisma.watchlistItem.upsert({
+     *   create: {
+     *     // ... data to create a WatchlistItem
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the WatchlistItem we want to update
+     *   }
+     * })
+     */
+    upsert<T extends WatchlistItemUpsertArgs>(args: SelectSubset<T, WatchlistItemUpsertArgs<ExtArgs>>): Prisma__WatchlistItemClient<$Result.GetResult<Prisma.$WatchlistItemPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of WatchlistItems.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WatchlistItemCountArgs} args - Arguments to filter WatchlistItems to count.
+     * @example
+     * // Count the number of WatchlistItems
+     * const count = await prisma.watchlistItem.count({
+     *   where: {
+     *     // ... the filter for the WatchlistItems we want to count
+     *   }
+     * })
+    **/
+    count<T extends WatchlistItemCountArgs>(
+      args?: Subset<T, WatchlistItemCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], WatchlistItemCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a WatchlistItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WatchlistItemAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends WatchlistItemAggregateArgs>(args: Subset<T, WatchlistItemAggregateArgs>): Prisma.PrismaPromise<GetWatchlistItemAggregateType<T>>
+
+    /**
+     * Group by WatchlistItem.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {WatchlistItemGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends WatchlistItemGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: WatchlistItemGroupByArgs['orderBy'] }
+        : { orderBy?: WatchlistItemGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, WatchlistItemGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetWatchlistItemGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the WatchlistItem model
+   */
+  readonly fields: WatchlistItemFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for WatchlistItem.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__WatchlistItemClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    movie<T extends MovieDefaultArgs<ExtArgs> = {}>(args?: Subset<T, MovieDefaultArgs<ExtArgs>>): Prisma__MovieClient<$Result.GetResult<Prisma.$MoviePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the WatchlistItem model
+   */
+  interface WatchlistItemFieldRefs {
+    readonly id: FieldRef<"WatchlistItem", 'String'>
+    readonly status: FieldRef<"WatchlistItem", 'WatchlistStatus'>
+    readonly addedAt: FieldRef<"WatchlistItem", 'DateTime'>
+    readonly userId: FieldRef<"WatchlistItem", 'String'>
+    readonly movieId: FieldRef<"WatchlistItem", 'String'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * WatchlistItem findUnique
+   */
+  export type WatchlistItemFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * Filter, which WatchlistItem to fetch.
+     */
+    where: WatchlistItemWhereUniqueInput
+  }
+
+  /**
+   * WatchlistItem findUniqueOrThrow
+   */
+  export type WatchlistItemFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * Filter, which WatchlistItem to fetch.
+     */
+    where: WatchlistItemWhereUniqueInput
+  }
+
+  /**
+   * WatchlistItem findFirst
+   */
+  export type WatchlistItemFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * Filter, which WatchlistItem to fetch.
+     */
+    where?: WatchlistItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WatchlistItems to fetch.
+     */
+    orderBy?: WatchlistItemOrderByWithRelationInput | WatchlistItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WatchlistItems.
+     */
+    cursor?: WatchlistItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WatchlistItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WatchlistItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WatchlistItems.
+     */
+    distinct?: WatchlistItemScalarFieldEnum | WatchlistItemScalarFieldEnum[]
+  }
+
+  /**
+   * WatchlistItem findFirstOrThrow
+   */
+  export type WatchlistItemFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * Filter, which WatchlistItem to fetch.
+     */
+    where?: WatchlistItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WatchlistItems to fetch.
+     */
+    orderBy?: WatchlistItemOrderByWithRelationInput | WatchlistItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for WatchlistItems.
+     */
+    cursor?: WatchlistItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WatchlistItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WatchlistItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WatchlistItems.
+     */
+    distinct?: WatchlistItemScalarFieldEnum | WatchlistItemScalarFieldEnum[]
+  }
+
+  /**
+   * WatchlistItem findMany
+   */
+  export type WatchlistItemFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * Filter, which WatchlistItems to fetch.
+     */
+    where?: WatchlistItemWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of WatchlistItems to fetch.
+     */
+    orderBy?: WatchlistItemOrderByWithRelationInput | WatchlistItemOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing WatchlistItems.
+     */
+    cursor?: WatchlistItemWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` WatchlistItems from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` WatchlistItems.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of WatchlistItems.
+     */
+    distinct?: WatchlistItemScalarFieldEnum | WatchlistItemScalarFieldEnum[]
+  }
+
+  /**
+   * WatchlistItem create
+   */
+  export type WatchlistItemCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * The data needed to create a WatchlistItem.
+     */
+    data: XOR<WatchlistItemCreateInput, WatchlistItemUncheckedCreateInput>
+  }
+
+  /**
+   * WatchlistItem createMany
+   */
+  export type WatchlistItemCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many WatchlistItems.
+     */
+    data: WatchlistItemCreateManyInput | WatchlistItemCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * WatchlistItem createManyAndReturn
+   */
+  export type WatchlistItemCreateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelectCreateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * The data used to create many WatchlistItems.
+     */
+    data: WatchlistItemCreateManyInput | WatchlistItemCreateManyInput[]
+    skipDuplicates?: boolean
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemIncludeCreateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WatchlistItem update
+   */
+  export type WatchlistItemUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * The data needed to update a WatchlistItem.
+     */
+    data: XOR<WatchlistItemUpdateInput, WatchlistItemUncheckedUpdateInput>
+    /**
+     * Choose, which WatchlistItem to update.
+     */
+    where: WatchlistItemWhereUniqueInput
+  }
+
+  /**
+   * WatchlistItem updateMany
+   */
+  export type WatchlistItemUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update WatchlistItems.
+     */
+    data: XOR<WatchlistItemUpdateManyMutationInput, WatchlistItemUncheckedUpdateManyInput>
+    /**
+     * Filter which WatchlistItems to update
+     */
+    where?: WatchlistItemWhereInput
+    /**
+     * Limit how many WatchlistItems to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * WatchlistItem updateManyAndReturn
+   */
+  export type WatchlistItemUpdateManyAndReturnArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelectUpdateManyAndReturn<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * The data used to update WatchlistItems.
+     */
+    data: XOR<WatchlistItemUpdateManyMutationInput, WatchlistItemUncheckedUpdateManyInput>
+    /**
+     * Filter which WatchlistItems to update
+     */
+    where?: WatchlistItemWhereInput
+    /**
+     * Limit how many WatchlistItems to update.
+     */
+    limit?: number
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemIncludeUpdateManyAndReturn<ExtArgs> | null
+  }
+
+  /**
+   * WatchlistItem upsert
+   */
+  export type WatchlistItemUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * The filter to search for the WatchlistItem to update in case it exists.
+     */
+    where: WatchlistItemWhereUniqueInput
+    /**
+     * In case the WatchlistItem found by the `where` argument doesn't exist, create a new WatchlistItem with this data.
+     */
+    create: XOR<WatchlistItemCreateInput, WatchlistItemUncheckedCreateInput>
+    /**
+     * In case the WatchlistItem was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<WatchlistItemUpdateInput, WatchlistItemUncheckedUpdateInput>
+  }
+
+  /**
+   * WatchlistItem delete
+   */
+  export type WatchlistItemDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
+    /**
+     * Filter which WatchlistItem to delete.
+     */
+    where: WatchlistItemWhereUniqueInput
+  }
+
+  /**
+   * WatchlistItem deleteMany
+   */
+  export type WatchlistItemDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which WatchlistItems to delete
+     */
+    where?: WatchlistItemWhereInput
+    /**
+     * Limit how many WatchlistItems to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * WatchlistItem without action
+   */
+  export type WatchlistItemDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WatchlistItem
+     */
+    select?: WatchlistItemSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the WatchlistItem
+     */
+    omit?: WatchlistItemOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: WatchlistItemInclude<ExtArgs> | null
   }
 
 
@@ -1891,6 +4515,32 @@ export namespace Prisma {
   export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
 
 
+  export const MovieScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    overview: 'overview',
+    releaseYear: 'releaseYear',
+    genres: 'genres',
+    runtime: 'runtime',
+    posterUrl: 'posterUrl',
+    createdAt: 'createdAt',
+    userId: 'userId'
+  };
+
+  export type MovieScalarFieldEnum = (typeof MovieScalarFieldEnum)[keyof typeof MovieScalarFieldEnum]
+
+
+  export const WatchlistItemScalarFieldEnum: {
+    id: 'id',
+    status: 'status',
+    addedAt: 'addedAt',
+    userId: 'userId',
+    movieId: 'movieId'
+  };
+
+  export type WatchlistItemScalarFieldEnum = (typeof WatchlistItemScalarFieldEnum)[keyof typeof WatchlistItemScalarFieldEnum]
+
+
   export const SortOrder: {
     asc: 'asc',
     desc: 'desc'
@@ -1905,6 +4555,14 @@ export namespace Prisma {
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
 
 
   /**
@@ -1952,6 +4610,34 @@ export namespace Prisma {
    */
   export type ListIntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int[]'>
     
+
+
+  /**
+   * Reference to a field of type 'WatchlistStatus'
+   */
+  export type EnumWatchlistStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WatchlistStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'WatchlistStatus[]'
+   */
+  export type ListEnumWatchlistStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'WatchlistStatus[]'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float[]'
+   */
+  export type ListFloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float[]'>
+    
   /**
    * Deep Input Types
    */
@@ -1966,6 +4652,8 @@ export namespace Prisma {
     email?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    movies?: MovieListRelationFilter
+    watchlist?: WatchlistItemListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -1974,6 +4662,8 @@ export namespace Prisma {
     email?: SortOrder
     password?: SortOrder
     createdAt?: SortOrder
+    movies?: MovieOrderByRelationAggregateInput
+    watchlist?: WatchlistItemOrderByRelationAggregateInput
   }
 
   export type UserWhereUniqueInput = Prisma.AtLeast<{
@@ -1985,6 +4675,8 @@ export namespace Prisma {
     name?: StringFilter<"User"> | string
     password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
+    movies?: MovieListRelationFilter
+    watchlist?: WatchlistItemListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -2009,12 +4701,152 @@ export namespace Prisma {
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
 
+  export type MovieWhereInput = {
+    AND?: MovieWhereInput | MovieWhereInput[]
+    OR?: MovieWhereInput[]
+    NOT?: MovieWhereInput | MovieWhereInput[]
+    id?: StringFilter<"Movie"> | string
+    title?: StringFilter<"Movie"> | string
+    overview?: StringNullableFilter<"Movie"> | string | null
+    releaseYear?: IntFilter<"Movie"> | number
+    genres?: StringNullableListFilter<"Movie">
+    runtime?: IntNullableFilter<"Movie"> | number | null
+    posterUrl?: StringNullableFilter<"Movie"> | string | null
+    createdAt?: DateTimeFilter<"Movie"> | Date | string
+    userId?: StringFilter<"Movie"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    watchlist?: WatchlistItemListRelationFilter
+  }
+
+  export type MovieOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    overview?: SortOrderInput | SortOrder
+    releaseYear?: SortOrder
+    genres?: SortOrder
+    runtime?: SortOrderInput | SortOrder
+    posterUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    watchlist?: WatchlistItemOrderByRelationAggregateInput
+  }
+
+  export type MovieWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: MovieWhereInput | MovieWhereInput[]
+    OR?: MovieWhereInput[]
+    NOT?: MovieWhereInput | MovieWhereInput[]
+    title?: StringFilter<"Movie"> | string
+    overview?: StringNullableFilter<"Movie"> | string | null
+    releaseYear?: IntFilter<"Movie"> | number
+    genres?: StringNullableListFilter<"Movie">
+    runtime?: IntNullableFilter<"Movie"> | number | null
+    posterUrl?: StringNullableFilter<"Movie"> | string | null
+    createdAt?: DateTimeFilter<"Movie"> | Date | string
+    userId?: StringFilter<"Movie"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    watchlist?: WatchlistItemListRelationFilter
+  }, "id">
+
+  export type MovieOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    overview?: SortOrderInput | SortOrder
+    releaseYear?: SortOrder
+    genres?: SortOrder
+    runtime?: SortOrderInput | SortOrder
+    posterUrl?: SortOrderInput | SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+    _count?: MovieCountOrderByAggregateInput
+    _avg?: MovieAvgOrderByAggregateInput
+    _max?: MovieMaxOrderByAggregateInput
+    _min?: MovieMinOrderByAggregateInput
+    _sum?: MovieSumOrderByAggregateInput
+  }
+
+  export type MovieScalarWhereWithAggregatesInput = {
+    AND?: MovieScalarWhereWithAggregatesInput | MovieScalarWhereWithAggregatesInput[]
+    OR?: MovieScalarWhereWithAggregatesInput[]
+    NOT?: MovieScalarWhereWithAggregatesInput | MovieScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"Movie"> | string
+    title?: StringWithAggregatesFilter<"Movie"> | string
+    overview?: StringNullableWithAggregatesFilter<"Movie"> | string | null
+    releaseYear?: IntWithAggregatesFilter<"Movie"> | number
+    genres?: StringNullableListFilter<"Movie">
+    runtime?: IntNullableWithAggregatesFilter<"Movie"> | number | null
+    posterUrl?: StringNullableWithAggregatesFilter<"Movie"> | string | null
+    createdAt?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
+    userId?: StringWithAggregatesFilter<"Movie"> | string
+  }
+
+  export type WatchlistItemWhereInput = {
+    AND?: WatchlistItemWhereInput | WatchlistItemWhereInput[]
+    OR?: WatchlistItemWhereInput[]
+    NOT?: WatchlistItemWhereInput | WatchlistItemWhereInput[]
+    id?: StringFilter<"WatchlistItem"> | string
+    status?: EnumWatchlistStatusFilter<"WatchlistItem"> | $Enums.WatchlistStatus
+    addedAt?: DateTimeFilter<"WatchlistItem"> | Date | string
+    userId?: StringFilter<"WatchlistItem"> | string
+    movieId?: StringFilter<"WatchlistItem"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    movie?: XOR<MovieScalarRelationFilter, MovieWhereInput>
+  }
+
+  export type WatchlistItemOrderByWithRelationInput = {
+    id?: SortOrder
+    status?: SortOrder
+    addedAt?: SortOrder
+    userId?: SortOrder
+    movieId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    movie?: MovieOrderByWithRelationInput
+  }
+
+  export type WatchlistItemWhereUniqueInput = Prisma.AtLeast<{
+    id?: string
+    AND?: WatchlistItemWhereInput | WatchlistItemWhereInput[]
+    OR?: WatchlistItemWhereInput[]
+    NOT?: WatchlistItemWhereInput | WatchlistItemWhereInput[]
+    status?: EnumWatchlistStatusFilter<"WatchlistItem"> | $Enums.WatchlistStatus
+    addedAt?: DateTimeFilter<"WatchlistItem"> | Date | string
+    userId?: StringFilter<"WatchlistItem"> | string
+    movieId?: StringFilter<"WatchlistItem"> | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    movie?: XOR<MovieScalarRelationFilter, MovieWhereInput>
+  }, "id">
+
+  export type WatchlistItemOrderByWithAggregationInput = {
+    id?: SortOrder
+    status?: SortOrder
+    addedAt?: SortOrder
+    userId?: SortOrder
+    movieId?: SortOrder
+    _count?: WatchlistItemCountOrderByAggregateInput
+    _max?: WatchlistItemMaxOrderByAggregateInput
+    _min?: WatchlistItemMinOrderByAggregateInput
+  }
+
+  export type WatchlistItemScalarWhereWithAggregatesInput = {
+    AND?: WatchlistItemScalarWhereWithAggregatesInput | WatchlistItemScalarWhereWithAggregatesInput[]
+    OR?: WatchlistItemScalarWhereWithAggregatesInput[]
+    NOT?: WatchlistItemScalarWhereWithAggregatesInput | WatchlistItemScalarWhereWithAggregatesInput[]
+    id?: StringWithAggregatesFilter<"WatchlistItem"> | string
+    status?: EnumWatchlistStatusWithAggregatesFilter<"WatchlistItem"> | $Enums.WatchlistStatus
+    addedAt?: DateTimeWithAggregatesFilter<"WatchlistItem"> | Date | string
+    userId?: StringWithAggregatesFilter<"WatchlistItem"> | string
+    movieId?: StringWithAggregatesFilter<"WatchlistItem"> | string
+  }
+
   export type UserCreateInput = {
     id?: string
     name: string
     email: string
     password: string
     createdAt?: Date | string
+    movies?: MovieCreateNestedManyWithoutUserInput
+    watchlist?: WatchlistItemCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -2023,6 +4855,8 @@ export namespace Prisma {
     email: string
     password: string
     createdAt?: Date | string
+    movies?: MovieUncheckedCreateNestedManyWithoutUserInput
+    watchlist?: WatchlistItemUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -2031,6 +4865,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    movies?: MovieUpdateManyWithoutUserNestedInput
+    watchlist?: WatchlistItemUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -2039,6 +4875,8 @@ export namespace Prisma {
     email?: StringFieldUpdateOperationsInput | string
     password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    movies?: MovieUncheckedUpdateManyWithoutUserNestedInput
+    watchlist?: WatchlistItemUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -2065,6 +4903,147 @@ export namespace Prisma {
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type MovieCreateInput = {
+    id?: string
+    title: string
+    overview?: string | null
+    releaseYear: number
+    genres?: MovieCreategenresInput | string[]
+    runtime?: number | null
+    posterUrl?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutMoviesInput
+    watchlist?: WatchlistItemCreateNestedManyWithoutMovieInput
+  }
+
+  export type MovieUncheckedCreateInput = {
+    id?: string
+    title: string
+    overview?: string | null
+    releaseYear: number
+    genres?: MovieCreategenresInput | string[]
+    runtime?: number | null
+    posterUrl?: string | null
+    createdAt?: Date | string
+    userId: string
+    watchlist?: WatchlistItemUncheckedCreateNestedManyWithoutMovieInput
+  }
+
+  export type MovieUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMoviesNestedInput
+    watchlist?: WatchlistItemUpdateManyWithoutMovieNestedInput
+  }
+
+  export type MovieUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    watchlist?: WatchlistItemUncheckedUpdateManyWithoutMovieNestedInput
+  }
+
+  export type MovieCreateManyInput = {
+    id?: string
+    title: string
+    overview?: string | null
+    releaseYear: number
+    genres?: MovieCreategenresInput | string[]
+    runtime?: number | null
+    posterUrl?: string | null
+    createdAt?: Date | string
+    userId: string
+  }
+
+  export type MovieUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type MovieUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WatchlistItemCreateInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    user: UserCreateNestedOneWithoutWatchlistInput
+    movie: MovieCreateNestedOneWithoutWatchlistInput
+  }
+
+  export type WatchlistItemUncheckedCreateInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    userId: string
+    movieId: string
+  }
+
+  export type WatchlistItemUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutWatchlistNestedInput
+    movie?: MovieUpdateOneRequiredWithoutWatchlistNestedInput
+  }
+
+  export type WatchlistItemUncheckedUpdateInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    movieId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WatchlistItemCreateManyInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    userId: string
+    movieId: string
+  }
+
+  export type WatchlistItemUpdateManyMutationInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WatchlistItemUncheckedUpdateManyInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+    movieId?: StringFieldUpdateOperationsInput | string
+  }
+
   export type StringFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel>
     in?: string[] | ListStringFieldRefInput<$PrismaModel>
@@ -2089,6 +5068,26 @@ export namespace Prisma {
     gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type MovieListRelationFilter = {
+    every?: MovieWhereInput
+    some?: MovieWhereInput
+    none?: MovieWhereInput
+  }
+
+  export type WatchlistItemListRelationFilter = {
+    every?: WatchlistItemWhereInput
+    some?: WatchlistItemWhereInput
+    none?: WatchlistItemWhereInput
+  }
+
+  export type MovieOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type WatchlistItemOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type UserCountOrderByAggregateInput = {
@@ -2147,12 +5146,408 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type MovieCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    overview?: SortOrder
+    releaseYear?: SortOrder
+    genres?: SortOrder
+    runtime?: SortOrder
+    posterUrl?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type MovieAvgOrderByAggregateInput = {
+    releaseYear?: SortOrder
+    runtime?: SortOrder
+  }
+
+  export type MovieMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    overview?: SortOrder
+    releaseYear?: SortOrder
+    runtime?: SortOrder
+    posterUrl?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type MovieMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    overview?: SortOrder
+    releaseYear?: SortOrder
+    runtime?: SortOrder
+    posterUrl?: SortOrder
+    createdAt?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type MovieSumOrderByAggregateInput = {
+    releaseYear?: SortOrder
+    runtime?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type EnumWatchlistStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.WatchlistStatus | EnumWatchlistStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.WatchlistStatus[] | ListEnumWatchlistStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WatchlistStatus[] | ListEnumWatchlistStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumWatchlistStatusFilter<$PrismaModel> | $Enums.WatchlistStatus
+  }
+
+  export type MovieScalarRelationFilter = {
+    is?: MovieWhereInput
+    isNot?: MovieWhereInput
+  }
+
+  export type WatchlistItemCountOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    addedAt?: SortOrder
+    userId?: SortOrder
+    movieId?: SortOrder
+  }
+
+  export type WatchlistItemMaxOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    addedAt?: SortOrder
+    userId?: SortOrder
+    movieId?: SortOrder
+  }
+
+  export type WatchlistItemMinOrderByAggregateInput = {
+    id?: SortOrder
+    status?: SortOrder
+    addedAt?: SortOrder
+    userId?: SortOrder
+    movieId?: SortOrder
+  }
+
+  export type EnumWatchlistStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.WatchlistStatus | EnumWatchlistStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.WatchlistStatus[] | ListEnumWatchlistStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WatchlistStatus[] | ListEnumWatchlistStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumWatchlistStatusWithAggregatesFilter<$PrismaModel> | $Enums.WatchlistStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumWatchlistStatusFilter<$PrismaModel>
+    _max?: NestedEnumWatchlistStatusFilter<$PrismaModel>
+  }
+
+  export type MovieCreateNestedManyWithoutUserInput = {
+    create?: XOR<MovieCreateWithoutUserInput, MovieUncheckedCreateWithoutUserInput> | MovieCreateWithoutUserInput[] | MovieUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MovieCreateOrConnectWithoutUserInput | MovieCreateOrConnectWithoutUserInput[]
+    createMany?: MovieCreateManyUserInputEnvelope
+    connect?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+  }
+
+  export type WatchlistItemCreateNestedManyWithoutUserInput = {
+    create?: XOR<WatchlistItemCreateWithoutUserInput, WatchlistItemUncheckedCreateWithoutUserInput> | WatchlistItemCreateWithoutUserInput[] | WatchlistItemUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WatchlistItemCreateOrConnectWithoutUserInput | WatchlistItemCreateOrConnectWithoutUserInput[]
+    createMany?: WatchlistItemCreateManyUserInputEnvelope
+    connect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+  }
+
+  export type MovieUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<MovieCreateWithoutUserInput, MovieUncheckedCreateWithoutUserInput> | MovieCreateWithoutUserInput[] | MovieUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MovieCreateOrConnectWithoutUserInput | MovieCreateOrConnectWithoutUserInput[]
+    createMany?: MovieCreateManyUserInputEnvelope
+    connect?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+  }
+
+  export type WatchlistItemUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<WatchlistItemCreateWithoutUserInput, WatchlistItemUncheckedCreateWithoutUserInput> | WatchlistItemCreateWithoutUserInput[] | WatchlistItemUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WatchlistItemCreateOrConnectWithoutUserInput | WatchlistItemCreateOrConnectWithoutUserInput[]
+    createMany?: WatchlistItemCreateManyUserInputEnvelope
+    connect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+  }
+
   export type StringFieldUpdateOperationsInput = {
     set?: string
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
     set?: Date | string
+  }
+
+  export type MovieUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MovieCreateWithoutUserInput, MovieUncheckedCreateWithoutUserInput> | MovieCreateWithoutUserInput[] | MovieUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MovieCreateOrConnectWithoutUserInput | MovieCreateOrConnectWithoutUserInput[]
+    upsert?: MovieUpsertWithWhereUniqueWithoutUserInput | MovieUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MovieCreateManyUserInputEnvelope
+    set?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+    disconnect?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+    delete?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+    connect?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+    update?: MovieUpdateWithWhereUniqueWithoutUserInput | MovieUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MovieUpdateManyWithWhereWithoutUserInput | MovieUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MovieScalarWhereInput | MovieScalarWhereInput[]
+  }
+
+  export type WatchlistItemUpdateManyWithoutUserNestedInput = {
+    create?: XOR<WatchlistItemCreateWithoutUserInput, WatchlistItemUncheckedCreateWithoutUserInput> | WatchlistItemCreateWithoutUserInput[] | WatchlistItemUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WatchlistItemCreateOrConnectWithoutUserInput | WatchlistItemCreateOrConnectWithoutUserInput[]
+    upsert?: WatchlistItemUpsertWithWhereUniqueWithoutUserInput | WatchlistItemUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: WatchlistItemCreateManyUserInputEnvelope
+    set?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    disconnect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    delete?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    connect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    update?: WatchlistItemUpdateWithWhereUniqueWithoutUserInput | WatchlistItemUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: WatchlistItemUpdateManyWithWhereWithoutUserInput | WatchlistItemUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: WatchlistItemScalarWhereInput | WatchlistItemScalarWhereInput[]
+  }
+
+  export type MovieUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<MovieCreateWithoutUserInput, MovieUncheckedCreateWithoutUserInput> | MovieCreateWithoutUserInput[] | MovieUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: MovieCreateOrConnectWithoutUserInput | MovieCreateOrConnectWithoutUserInput[]
+    upsert?: MovieUpsertWithWhereUniqueWithoutUserInput | MovieUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: MovieCreateManyUserInputEnvelope
+    set?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+    disconnect?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+    delete?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+    connect?: MovieWhereUniqueInput | MovieWhereUniqueInput[]
+    update?: MovieUpdateWithWhereUniqueWithoutUserInput | MovieUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: MovieUpdateManyWithWhereWithoutUserInput | MovieUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: MovieScalarWhereInput | MovieScalarWhereInput[]
+  }
+
+  export type WatchlistItemUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<WatchlistItemCreateWithoutUserInput, WatchlistItemUncheckedCreateWithoutUserInput> | WatchlistItemCreateWithoutUserInput[] | WatchlistItemUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: WatchlistItemCreateOrConnectWithoutUserInput | WatchlistItemCreateOrConnectWithoutUserInput[]
+    upsert?: WatchlistItemUpsertWithWhereUniqueWithoutUserInput | WatchlistItemUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: WatchlistItemCreateManyUserInputEnvelope
+    set?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    disconnect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    delete?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    connect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    update?: WatchlistItemUpdateWithWhereUniqueWithoutUserInput | WatchlistItemUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: WatchlistItemUpdateManyWithWhereWithoutUserInput | WatchlistItemUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: WatchlistItemScalarWhereInput | WatchlistItemScalarWhereInput[]
+  }
+
+  export type MovieCreategenresInput = {
+    set: string[]
+  }
+
+  export type UserCreateNestedOneWithoutMoviesInput = {
+    create?: XOR<UserCreateWithoutMoviesInput, UserUncheckedCreateWithoutMoviesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMoviesInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type WatchlistItemCreateNestedManyWithoutMovieInput = {
+    create?: XOR<WatchlistItemCreateWithoutMovieInput, WatchlistItemUncheckedCreateWithoutMovieInput> | WatchlistItemCreateWithoutMovieInput[] | WatchlistItemUncheckedCreateWithoutMovieInput[]
+    connectOrCreate?: WatchlistItemCreateOrConnectWithoutMovieInput | WatchlistItemCreateOrConnectWithoutMovieInput[]
+    createMany?: WatchlistItemCreateManyMovieInputEnvelope
+    connect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+  }
+
+  export type WatchlistItemUncheckedCreateNestedManyWithoutMovieInput = {
+    create?: XOR<WatchlistItemCreateWithoutMovieInput, WatchlistItemUncheckedCreateWithoutMovieInput> | WatchlistItemCreateWithoutMovieInput[] | WatchlistItemUncheckedCreateWithoutMovieInput[]
+    connectOrCreate?: WatchlistItemCreateOrConnectWithoutMovieInput | WatchlistItemCreateOrConnectWithoutMovieInput[]
+    createMany?: WatchlistItemCreateManyMovieInputEnvelope
+    connect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type MovieUpdategenresInput = {
+    set?: string[]
+    push?: string | string[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type UserUpdateOneRequiredWithoutMoviesNestedInput = {
+    create?: XOR<UserCreateWithoutMoviesInput, UserUncheckedCreateWithoutMoviesInput>
+    connectOrCreate?: UserCreateOrConnectWithoutMoviesInput
+    upsert?: UserUpsertWithoutMoviesInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutMoviesInput, UserUpdateWithoutMoviesInput>, UserUncheckedUpdateWithoutMoviesInput>
+  }
+
+  export type WatchlistItemUpdateManyWithoutMovieNestedInput = {
+    create?: XOR<WatchlistItemCreateWithoutMovieInput, WatchlistItemUncheckedCreateWithoutMovieInput> | WatchlistItemCreateWithoutMovieInput[] | WatchlistItemUncheckedCreateWithoutMovieInput[]
+    connectOrCreate?: WatchlistItemCreateOrConnectWithoutMovieInput | WatchlistItemCreateOrConnectWithoutMovieInput[]
+    upsert?: WatchlistItemUpsertWithWhereUniqueWithoutMovieInput | WatchlistItemUpsertWithWhereUniqueWithoutMovieInput[]
+    createMany?: WatchlistItemCreateManyMovieInputEnvelope
+    set?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    disconnect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    delete?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    connect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    update?: WatchlistItemUpdateWithWhereUniqueWithoutMovieInput | WatchlistItemUpdateWithWhereUniqueWithoutMovieInput[]
+    updateMany?: WatchlistItemUpdateManyWithWhereWithoutMovieInput | WatchlistItemUpdateManyWithWhereWithoutMovieInput[]
+    deleteMany?: WatchlistItemScalarWhereInput | WatchlistItemScalarWhereInput[]
+  }
+
+  export type WatchlistItemUncheckedUpdateManyWithoutMovieNestedInput = {
+    create?: XOR<WatchlistItemCreateWithoutMovieInput, WatchlistItemUncheckedCreateWithoutMovieInput> | WatchlistItemCreateWithoutMovieInput[] | WatchlistItemUncheckedCreateWithoutMovieInput[]
+    connectOrCreate?: WatchlistItemCreateOrConnectWithoutMovieInput | WatchlistItemCreateOrConnectWithoutMovieInput[]
+    upsert?: WatchlistItemUpsertWithWhereUniqueWithoutMovieInput | WatchlistItemUpsertWithWhereUniqueWithoutMovieInput[]
+    createMany?: WatchlistItemCreateManyMovieInputEnvelope
+    set?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    disconnect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    delete?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    connect?: WatchlistItemWhereUniqueInput | WatchlistItemWhereUniqueInput[]
+    update?: WatchlistItemUpdateWithWhereUniqueWithoutMovieInput | WatchlistItemUpdateWithWhereUniqueWithoutMovieInput[]
+    updateMany?: WatchlistItemUpdateManyWithWhereWithoutMovieInput | WatchlistItemUpdateManyWithWhereWithoutMovieInput[]
+    deleteMany?: WatchlistItemScalarWhereInput | WatchlistItemScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutWatchlistInput = {
+    create?: XOR<UserCreateWithoutWatchlistInput, UserUncheckedCreateWithoutWatchlistInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWatchlistInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type MovieCreateNestedOneWithoutWatchlistInput = {
+    create?: XOR<MovieCreateWithoutWatchlistInput, MovieUncheckedCreateWithoutWatchlistInput>
+    connectOrCreate?: MovieCreateOrConnectWithoutWatchlistInput
+    connect?: MovieWhereUniqueInput
+  }
+
+  export type EnumWatchlistStatusFieldUpdateOperationsInput = {
+    set?: $Enums.WatchlistStatus
+  }
+
+  export type UserUpdateOneRequiredWithoutWatchlistNestedInput = {
+    create?: XOR<UserCreateWithoutWatchlistInput, UserUncheckedCreateWithoutWatchlistInput>
+    connectOrCreate?: UserCreateOrConnectWithoutWatchlistInput
+    upsert?: UserUpsertWithoutWatchlistInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutWatchlistInput, UserUpdateWithoutWatchlistInput>, UserUncheckedUpdateWithoutWatchlistInput>
+  }
+
+  export type MovieUpdateOneRequiredWithoutWatchlistNestedInput = {
+    create?: XOR<MovieCreateWithoutWatchlistInput, MovieUncheckedCreateWithoutWatchlistInput>
+    connectOrCreate?: MovieCreateOrConnectWithoutWatchlistInput
+    upsert?: MovieUpsertWithoutWatchlistInput
+    connect?: MovieWhereUniqueInput
+    update?: XOR<XOR<MovieUpdateToOneWithWhereWithoutWatchlistInput, MovieUpdateWithoutWatchlistInput>, MovieUncheckedUpdateWithoutWatchlistInput>
   }
 
   export type NestedStringFilter<$PrismaModel = never> = {
@@ -2220,6 +5615,545 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[] | ListIntFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel>
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel>
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListIntFieldRefInput<$PrismaModel> | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    notIn?: number[] | ListFloatFieldRefInput<$PrismaModel> | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumWatchlistStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.WatchlistStatus | EnumWatchlistStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.WatchlistStatus[] | ListEnumWatchlistStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WatchlistStatus[] | ListEnumWatchlistStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumWatchlistStatusFilter<$PrismaModel> | $Enums.WatchlistStatus
+  }
+
+  export type NestedEnumWatchlistStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.WatchlistStatus | EnumWatchlistStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.WatchlistStatus[] | ListEnumWatchlistStatusFieldRefInput<$PrismaModel>
+    notIn?: $Enums.WatchlistStatus[] | ListEnumWatchlistStatusFieldRefInput<$PrismaModel>
+    not?: NestedEnumWatchlistStatusWithAggregatesFilter<$PrismaModel> | $Enums.WatchlistStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumWatchlistStatusFilter<$PrismaModel>
+    _max?: NestedEnumWatchlistStatusFilter<$PrismaModel>
+  }
+
+  export type MovieCreateWithoutUserInput = {
+    id?: string
+    title: string
+    overview?: string | null
+    releaseYear: number
+    genres?: MovieCreategenresInput | string[]
+    runtime?: number | null
+    posterUrl?: string | null
+    createdAt?: Date | string
+    watchlist?: WatchlistItemCreateNestedManyWithoutMovieInput
+  }
+
+  export type MovieUncheckedCreateWithoutUserInput = {
+    id?: string
+    title: string
+    overview?: string | null
+    releaseYear: number
+    genres?: MovieCreategenresInput | string[]
+    runtime?: number | null
+    posterUrl?: string | null
+    createdAt?: Date | string
+    watchlist?: WatchlistItemUncheckedCreateNestedManyWithoutMovieInput
+  }
+
+  export type MovieCreateOrConnectWithoutUserInput = {
+    where: MovieWhereUniqueInput
+    create: XOR<MovieCreateWithoutUserInput, MovieUncheckedCreateWithoutUserInput>
+  }
+
+  export type MovieCreateManyUserInputEnvelope = {
+    data: MovieCreateManyUserInput | MovieCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type WatchlistItemCreateWithoutUserInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    movie: MovieCreateNestedOneWithoutWatchlistInput
+  }
+
+  export type WatchlistItemUncheckedCreateWithoutUserInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    movieId: string
+  }
+
+  export type WatchlistItemCreateOrConnectWithoutUserInput = {
+    where: WatchlistItemWhereUniqueInput
+    create: XOR<WatchlistItemCreateWithoutUserInput, WatchlistItemUncheckedCreateWithoutUserInput>
+  }
+
+  export type WatchlistItemCreateManyUserInputEnvelope = {
+    data: WatchlistItemCreateManyUserInput | WatchlistItemCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type MovieUpsertWithWhereUniqueWithoutUserInput = {
+    where: MovieWhereUniqueInput
+    update: XOR<MovieUpdateWithoutUserInput, MovieUncheckedUpdateWithoutUserInput>
+    create: XOR<MovieCreateWithoutUserInput, MovieUncheckedCreateWithoutUserInput>
+  }
+
+  export type MovieUpdateWithWhereUniqueWithoutUserInput = {
+    where: MovieWhereUniqueInput
+    data: XOR<MovieUpdateWithoutUserInput, MovieUncheckedUpdateWithoutUserInput>
+  }
+
+  export type MovieUpdateManyWithWhereWithoutUserInput = {
+    where: MovieScalarWhereInput
+    data: XOR<MovieUpdateManyMutationInput, MovieUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type MovieScalarWhereInput = {
+    AND?: MovieScalarWhereInput | MovieScalarWhereInput[]
+    OR?: MovieScalarWhereInput[]
+    NOT?: MovieScalarWhereInput | MovieScalarWhereInput[]
+    id?: StringFilter<"Movie"> | string
+    title?: StringFilter<"Movie"> | string
+    overview?: StringNullableFilter<"Movie"> | string | null
+    releaseYear?: IntFilter<"Movie"> | number
+    genres?: StringNullableListFilter<"Movie">
+    runtime?: IntNullableFilter<"Movie"> | number | null
+    posterUrl?: StringNullableFilter<"Movie"> | string | null
+    createdAt?: DateTimeFilter<"Movie"> | Date | string
+    userId?: StringFilter<"Movie"> | string
+  }
+
+  export type WatchlistItemUpsertWithWhereUniqueWithoutUserInput = {
+    where: WatchlistItemWhereUniqueInput
+    update: XOR<WatchlistItemUpdateWithoutUserInput, WatchlistItemUncheckedUpdateWithoutUserInput>
+    create: XOR<WatchlistItemCreateWithoutUserInput, WatchlistItemUncheckedCreateWithoutUserInput>
+  }
+
+  export type WatchlistItemUpdateWithWhereUniqueWithoutUserInput = {
+    where: WatchlistItemWhereUniqueInput
+    data: XOR<WatchlistItemUpdateWithoutUserInput, WatchlistItemUncheckedUpdateWithoutUserInput>
+  }
+
+  export type WatchlistItemUpdateManyWithWhereWithoutUserInput = {
+    where: WatchlistItemScalarWhereInput
+    data: XOR<WatchlistItemUpdateManyMutationInput, WatchlistItemUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type WatchlistItemScalarWhereInput = {
+    AND?: WatchlistItemScalarWhereInput | WatchlistItemScalarWhereInput[]
+    OR?: WatchlistItemScalarWhereInput[]
+    NOT?: WatchlistItemScalarWhereInput | WatchlistItemScalarWhereInput[]
+    id?: StringFilter<"WatchlistItem"> | string
+    status?: EnumWatchlistStatusFilter<"WatchlistItem"> | $Enums.WatchlistStatus
+    addedAt?: DateTimeFilter<"WatchlistItem"> | Date | string
+    userId?: StringFilter<"WatchlistItem"> | string
+    movieId?: StringFilter<"WatchlistItem"> | string
+  }
+
+  export type UserCreateWithoutMoviesInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    watchlist?: WatchlistItemCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutMoviesInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    watchlist?: WatchlistItemUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutMoviesInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutMoviesInput, UserUncheckedCreateWithoutMoviesInput>
+  }
+
+  export type WatchlistItemCreateWithoutMovieInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    user: UserCreateNestedOneWithoutWatchlistInput
+  }
+
+  export type WatchlistItemUncheckedCreateWithoutMovieInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    userId: string
+  }
+
+  export type WatchlistItemCreateOrConnectWithoutMovieInput = {
+    where: WatchlistItemWhereUniqueInput
+    create: XOR<WatchlistItemCreateWithoutMovieInput, WatchlistItemUncheckedCreateWithoutMovieInput>
+  }
+
+  export type WatchlistItemCreateManyMovieInputEnvelope = {
+    data: WatchlistItemCreateManyMovieInput | WatchlistItemCreateManyMovieInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutMoviesInput = {
+    update: XOR<UserUpdateWithoutMoviesInput, UserUncheckedUpdateWithoutMoviesInput>
+    create: XOR<UserCreateWithoutMoviesInput, UserUncheckedCreateWithoutMoviesInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutMoviesInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutMoviesInput, UserUncheckedUpdateWithoutMoviesInput>
+  }
+
+  export type UserUpdateWithoutMoviesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    watchlist?: WatchlistItemUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutMoviesInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    watchlist?: WatchlistItemUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type WatchlistItemUpsertWithWhereUniqueWithoutMovieInput = {
+    where: WatchlistItemWhereUniqueInput
+    update: XOR<WatchlistItemUpdateWithoutMovieInput, WatchlistItemUncheckedUpdateWithoutMovieInput>
+    create: XOR<WatchlistItemCreateWithoutMovieInput, WatchlistItemUncheckedCreateWithoutMovieInput>
+  }
+
+  export type WatchlistItemUpdateWithWhereUniqueWithoutMovieInput = {
+    where: WatchlistItemWhereUniqueInput
+    data: XOR<WatchlistItemUpdateWithoutMovieInput, WatchlistItemUncheckedUpdateWithoutMovieInput>
+  }
+
+  export type WatchlistItemUpdateManyWithWhereWithoutMovieInput = {
+    where: WatchlistItemScalarWhereInput
+    data: XOR<WatchlistItemUpdateManyMutationInput, WatchlistItemUncheckedUpdateManyWithoutMovieInput>
+  }
+
+  export type UserCreateWithoutWatchlistInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    movies?: MovieCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutWatchlistInput = {
+    id?: string
+    name: string
+    email: string
+    password: string
+    createdAt?: Date | string
+    movies?: MovieUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutWatchlistInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutWatchlistInput, UserUncheckedCreateWithoutWatchlistInput>
+  }
+
+  export type MovieCreateWithoutWatchlistInput = {
+    id?: string
+    title: string
+    overview?: string | null
+    releaseYear: number
+    genres?: MovieCreategenresInput | string[]
+    runtime?: number | null
+    posterUrl?: string | null
+    createdAt?: Date | string
+    user: UserCreateNestedOneWithoutMoviesInput
+  }
+
+  export type MovieUncheckedCreateWithoutWatchlistInput = {
+    id?: string
+    title: string
+    overview?: string | null
+    releaseYear: number
+    genres?: MovieCreategenresInput | string[]
+    runtime?: number | null
+    posterUrl?: string | null
+    createdAt?: Date | string
+    userId: string
+  }
+
+  export type MovieCreateOrConnectWithoutWatchlistInput = {
+    where: MovieWhereUniqueInput
+    create: XOR<MovieCreateWithoutWatchlistInput, MovieUncheckedCreateWithoutWatchlistInput>
+  }
+
+  export type UserUpsertWithoutWatchlistInput = {
+    update: XOR<UserUpdateWithoutWatchlistInput, UserUncheckedUpdateWithoutWatchlistInput>
+    create: XOR<UserCreateWithoutWatchlistInput, UserUncheckedCreateWithoutWatchlistInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutWatchlistInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutWatchlistInput, UserUncheckedUpdateWithoutWatchlistInput>
+  }
+
+  export type UserUpdateWithoutWatchlistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    movies?: MovieUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutWatchlistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    movies?: MovieUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type MovieUpsertWithoutWatchlistInput = {
+    update: XOR<MovieUpdateWithoutWatchlistInput, MovieUncheckedUpdateWithoutWatchlistInput>
+    create: XOR<MovieCreateWithoutWatchlistInput, MovieUncheckedCreateWithoutWatchlistInput>
+    where?: MovieWhereInput
+  }
+
+  export type MovieUpdateToOneWithWhereWithoutWatchlistInput = {
+    where?: MovieWhereInput
+    data: XOR<MovieUpdateWithoutWatchlistInput, MovieUncheckedUpdateWithoutWatchlistInput>
+  }
+
+  export type MovieUpdateWithoutWatchlistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutMoviesNestedInput
+  }
+
+  export type MovieUncheckedUpdateWithoutWatchlistInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type MovieCreateManyUserInput = {
+    id?: string
+    title: string
+    overview?: string | null
+    releaseYear: number
+    genres?: MovieCreategenresInput | string[]
+    runtime?: number | null
+    posterUrl?: string | null
+    createdAt?: Date | string
+  }
+
+  export type WatchlistItemCreateManyUserInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    movieId: string
+  }
+
+  export type MovieUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    watchlist?: WatchlistItemUpdateManyWithoutMovieNestedInput
+  }
+
+  export type MovieUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    watchlist?: WatchlistItemUncheckedUpdateManyWithoutMovieNestedInput
+  }
+
+  export type MovieUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    title?: StringFieldUpdateOperationsInput | string
+    overview?: NullableStringFieldUpdateOperationsInput | string | null
+    releaseYear?: IntFieldUpdateOperationsInput | number
+    genres?: MovieUpdategenresInput | string[]
+    runtime?: NullableIntFieldUpdateOperationsInput | number | null
+    posterUrl?: NullableStringFieldUpdateOperationsInput | string | null
+    createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type WatchlistItemUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    movie?: MovieUpdateOneRequiredWithoutWatchlistNestedInput
+  }
+
+  export type WatchlistItemUncheckedUpdateWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    movieId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WatchlistItemUncheckedUpdateManyWithoutUserInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    movieId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WatchlistItemCreateManyMovieInput = {
+    id?: string
+    status?: $Enums.WatchlistStatus
+    addedAt?: Date | string
+    userId: string
+  }
+
+  export type WatchlistItemUpdateWithoutMovieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutWatchlistNestedInput
+  }
+
+  export type WatchlistItemUncheckedUpdateWithoutMovieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WatchlistItemUncheckedUpdateManyWithoutMovieInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    status?: EnumWatchlistStatusFieldUpdateOperationsInput | $Enums.WatchlistStatus
+    addedAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: StringFieldUpdateOperationsInput | string
   }
 
 
