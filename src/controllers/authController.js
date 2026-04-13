@@ -2,6 +2,7 @@ import { prisma } from "../config/db.js";
 import bcrypt from "bcryptjs";
 import { generateToken } from "../utils/generateToken.js";
 import {} from "../utils/generateToken.js";
+import { addToWatchlist } from "./wathclistController.js";
 
 const register = async (req, res) => {
   const body = req.body;

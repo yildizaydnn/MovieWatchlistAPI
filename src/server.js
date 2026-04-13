@@ -4,6 +4,8 @@ import { connectDB, disconnectDB } from "./config/db.js";
 
 import movieRoutes from "./routes/movieRoutes.js";
 import authRoutes from "./routes/authRoutes.js";
+import watchlistRoutes from "./routes/watchlistRoutes.js";
+import { WatchlistStatus } from "@prisma/client";
 
 config();
 connectDB();
@@ -17,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 //api routes
 app.use("/movies", movieRoutes);
 app.use("/auth", authRoutes);
+app.use("/watchlist", watchlistRoutes);
 
 const PORT = 5001;
 const server = app.listen(PORT, () => {
